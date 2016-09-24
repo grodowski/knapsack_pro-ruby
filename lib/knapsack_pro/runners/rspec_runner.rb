@@ -8,11 +8,17 @@ module KnapsackPro
         runner = new(KnapsackPro::Adapters::RSpecAdapter)
 
         require 'rspec/core/rake_task'
-        RSpec::Core::RakeTask.new(:spec) do |t|
+
+        task_name = :spec
+        if Rake::Task.task_defined?(task_name)
+          Rake::Task[task_name].clear
+        end
+
+        RSpec::Core::RakeTask.new(task_name) do |t|
           t.rspec_opts = "#{args} --default-path #{runner.test_dir}"
           t.pattern = runner.test_file_paths
         end
-        Rake::Task[:spec].invoke
+        Rake::Task[task_name].invoke
       end
     end
   end
