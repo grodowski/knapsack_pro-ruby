@@ -7,6 +7,7 @@ arguments = ARGV[1]
 
 MAP = {
   'rspec' => KnapsackPro::Runners::RSpecRunner,
+  'zeus_rspec' => KnapsackPro::Runners::ZeusRSpecRunner,
   'cucumber' => KnapsackPro::Runners::CucumberRunner,
   'minitest' => KnapsackPro::Runners::MinitestRunner,
   'spinach' => KnapsackPro::Runners::SpinachRunner,
