@@ -8,6 +8,7 @@ module KnapsackPro
         runner = new(KnapsackPro::Adapters::MinitestAdapter)
 
         if runner.test_files_to_execute_exist?
+          require 'minitest'
           task_name = 'knapsack_pro:minitest_run'
 
           if Rake::Task.task_defined?(task_name)
