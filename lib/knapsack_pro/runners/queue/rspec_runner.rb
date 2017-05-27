@@ -49,7 +49,7 @@ module KnapsackPro
             options = RSpec::Core::ConfigurationOptions.new(cli_args)
             exit_code = RSpec::Core::Runner.new(options).run($stderr, $stdout)
             exitstatus = exit_code if exit_code != 0
-            RSpec.world.example_groups.clear
+            RSpec.clear_examples
 
             KnapsackPro::Hooks::Queue.call_after_subset_queue
 
