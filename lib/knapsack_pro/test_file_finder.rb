@@ -64,10 +64,13 @@ module KnapsackPro
       end
 
       test_file_paths = Dir.glob(test_file_pattern).uniq
+      KnapsackPro.logger.debug("Found test files: #{test_file_paths.inspect}")
 
       excluded_test_file_paths =
         if KnapsackPro::Config::Env.test_file_exclude_pattern
-          Dir.glob(KnapsackPro::Config::Env.test_file_exclude_pattern).uniq
+          tests = Dir.glob(KnapsackPro::Config::Env.test_file_exclude_pattern).uniq
+          KnapsackPro.logger.debug("Found test files to be excluded: #{tests.inspect}")
+          tests
         else
           []
         end
