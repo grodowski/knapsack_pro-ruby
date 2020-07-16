@@ -42,6 +42,13 @@ module KnapsackPro
 
         KnapsackPro.logger.info("Generating RSpec test examples JSON report for slow test files to prepare it to be split by test examples (by individual 'it's. Thanks to that a single slow test file can be split across parallel CI nodes). Analyzing #{slow_test_files.size} slow test files.")
 
+        puts 'current directory'
+        Kernel.system('pwd')
+        puts 'rake tasks'
+        Kernel.system('rake --list')
+        puts 'rake tasks in test environment'
+        Kernel.system('RACK_ENV=test RAILS_ENV=test rake --list')
+
         # generate RSpec JSON report in separate process to not pollute RSpec state
         cmd = 'RACK_ENV=test RAILS_ENV=test bundle exec rake knapsack_pro:rspec_test_example_detector'
         unless Kernel.system(cmd)
